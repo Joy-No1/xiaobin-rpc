@@ -1,7 +1,7 @@
 package com.xiaobin;
 
-import com.xiaobin.common.Invocation;
-import com.xiaobin.protocol.HttpClient;
+
+import com.xiaobin.proxy.ProxyFactory;
 
 /**
  * @author Joy
@@ -11,15 +11,8 @@ import com.xiaobin.protocol.HttpClient;
  */
 public class Consumer {
     public static void main(String[] args) {
-//        HelloService helloService;
-//        String name = helloService.sayHello("xiaobin");
-//        System.out.println(name);
-
-        Invocation invocation = new Invocation(HelloService.class.getName(), "sayHello", new Class[]{String.class}, new Object[]{"xiaobin"}, "1.0");
-
-
-        HttpClient httpClient = new HttpClient();
-        String result = httpClient.send("localhost", 8888, invocation);
+        HelloService helloService= ProxyFactory.getProxy(HelloService.class);
+        String result = helloService.sayHello("xiaobin");
         System.out.println(result);
     }
 }
