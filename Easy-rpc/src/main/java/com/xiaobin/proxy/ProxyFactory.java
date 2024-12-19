@@ -31,7 +31,13 @@ public class ProxyFactory {
 
                 //负载均衡
                 URL url = LoadBalance.random(urlList);
-                return httpClient.send(url.getHostname(), url.getPort(), invocation);
+
+                //服务调用
+                try {
+                    return httpClient.send(url.getHostname(), url.getPort(), invocation);
+                } catch (Exception e) {
+                    return "服务调用时发生错误,错误信息:" + e;
+                }
             }
         });
         return (T) proxyInstance;

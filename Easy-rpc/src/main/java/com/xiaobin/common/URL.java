@@ -1,12 +1,14 @@
 package com.xiaobin.common;
 
+import java.io.Serializable;
+
 /**
  * @author Joy
  * @date: 2024/12/19 20:09
  * @description: URL 路径 获取主机及端口
  * Good Luck!!!
  */
-public class URL {
+public class URL implements Serializable {
     private String hostname;
     private Integer port;
 
